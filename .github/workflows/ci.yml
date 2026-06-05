@@ -1,0 +1,52 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: gamstory
+          POSTGRES_PASSWORD: gamstory
+          POSTGRES_DB: gamstory
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U gamstory" --health-interval 3s
+          --health-timeout 3s --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 3s
+          --health-timeout 3s --health-retries 10
+    env:
+      DATABASE_URL: postgres://gamstory:gamstory@localhost:5432/gamstory
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET_CI || 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' }}
+      BETTER_AUTH_URL: http://localhost:3000
+      REFRESH_TOKEN_ENC_KEY: ${{ secrets.REFRESH_TOKEN_ENC_KEY_CI || 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb' }}
+      REDIS_URL: redis://localhost:6379
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'pnpm' }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm db:migrate
+      - run: pnpm test:unit
+      - run: pnpm test:int
+      - run: pnpm storybook:build
+      - name: Run Storybook test-runner
+        run: |
+          npx http-server storybook-static -p 6007 -s &
+          sleep 3
+          TARGET_URL=http://127.0.0.1:6007 pnpm test:stories
