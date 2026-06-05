@@ -11,7 +11,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test:unit": "vitest run --project unit",
@@ -37,7 +37,6 @@
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@tanstack/router-plugin": "^1.168.14",
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.16",
     "@types/react-dom": "^19.2.3",
