@@ -97,8 +97,7 @@ export function ListView({ filters, onFiltersChange }: ListViewProps) {
               .join(', ');
             return (
               <li key={p.id}>
-                {/* Play detail route lands in Task 13; until then navigate as a literal path. */}
-                <Link to={'/plays/' + p.id}>
+                <Link to="/plays/$playId" params={{ playId: p.id }}>
                   <Card className="hover:bg-muted/30 cursor-pointer">
                     <CardHeader className="flex items-center justify-between">
                       <span className="font-semibold">{game}</span>

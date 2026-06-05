@@ -34,5 +34,12 @@
   "calendar.prev": "이전 달",
   "calendar.next": "다음 달",
   "calendar.noDescription": "메모 없음",
-  "common.back": "뒤로"
+  "common.back": "뒤로",
+  "common.edit": "수정",
+  "common.delete": "삭제",
+  "detail.loading": "불러오는 중...",
+  "detail.participants": "참가자",
+  "detail.notes": "메모",
+  "detail.photos": "사진",
+  "detail.confirmDelete": "이 플레이를 삭제하시겠어요?"
 }

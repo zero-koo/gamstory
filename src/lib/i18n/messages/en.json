@@ -34,5 +34,12 @@
   "calendar.prev": "Previous month",
   "calendar.next": "Next month",
   "calendar.noDescription": "No notes",
-  "common.back": "Back"
+  "common.back": "Back",
+  "common.edit": "Edit",
+  "common.delete": "Delete",
+  "detail.loading": "Loading...",
+  "detail.participants": "Participants",
+  "detail.notes": "Notes",
+  "detail.photos": "Photos",
+  "detail.confirmDelete": "Delete this play?"
 }

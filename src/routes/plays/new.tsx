@@ -14,8 +14,7 @@ function NewPlayRoute() {
       <PlayForm
         onSubmit={async (input) => {
           const p = await createLocalPlay(input);
-          // Detail route lands in Task 13; until then navigate as a literal path.
-          await navigate({ to: '/plays/' + p.id });
+          await navigate({ to: '/plays/$playId', params: { playId: p.id } });
         }}
         onCancel={() => navigate({ to: '/' })}
       />

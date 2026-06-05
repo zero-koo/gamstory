@@ -26,10 +26,9 @@ function EditPlayRoute() {
         }}
         onSubmit={async (input) => {
           await updateLocalPlay(playId, input);
-          // Detail route lands in Task 13; until then navigate as a literal path.
-          await navigate({ to: '/plays/' + playId });
+          await navigate({ to: '/plays/$playId', params: { playId } });
         }}
-        onCancel={() => navigate({ to: '/plays/' + playId })}
+        onCancel={() => navigate({ to: '/plays/$playId', params: { playId } })}
       />
     </main>
   );
