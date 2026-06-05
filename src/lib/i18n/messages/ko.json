@@ -7,5 +7,9 @@
   "play.memberPicker.label": "참가자 선택",
   "play.memberPicker.placeholder": "이름 입력",
   "play.memberPicker.create": "새 참가자 추가",
-  "play.memberPicker.remove": "제거"
+  "play.memberPicker.remove": "제거",
+  "play.photo.add": "사진 추가 ({count}/{max})",
+  "play.photo.remove": "사진 삭제",
+  "play.photo.tooLarge": "사진이 5MB를 초과합니다",
+  "play.photo.capReached": "최대 5장까지 가능"
 }

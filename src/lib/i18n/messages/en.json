@@ -7,5 +7,9 @@
   "play.memberPicker.label": "Pick participants",
   "play.memberPicker.placeholder": "Type a name",
   "play.memberPicker.create": "Add new participant",
-  "play.memberPicker.remove": "Remove"
+  "play.memberPicker.remove": "Remove",
+  "play.photo.add": "Add photo ({count}/{max})",
+  "play.photo.remove": "Remove photo",
+  "play.photo.tooLarge": "Photo exceeds 5MB",
+  "play.photo.capReached": "5-photo limit reached"
 }
