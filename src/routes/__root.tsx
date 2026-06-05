@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import '../styles/globals.css';
+import { I18nProvider } from '~/lib/i18n/I18nProvider';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -28,7 +29,9 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body>
-        <Outlet />
+        <I18nProvider>
+          <Outlet />
+        </I18nProvider>
         <Scripts />
       </body>
     </html>
