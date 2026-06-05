@@ -30,8 +30,7 @@ function HomeRoute() {
           <Button onClick={() => navigate({ to: '/plays/new' })} data-testid="new-play-button">
             + {t('list.newPlay')}
           </Button>
-          {/* Calendar route lands in Task 12; until then navigate as a literal path. */}
-          <Link to={'/calendar' as never}>
+          <Link to="/calendar">
             <Button variant="ghost">{t('list.calendar')}</Button>
           </Link>
           <Button variant="ghost" onClick={() => setLocale(locale === 'ko-KR' ? 'en' : 'ko-KR')}>

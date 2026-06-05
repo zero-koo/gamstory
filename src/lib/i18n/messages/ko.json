@@ -29,5 +29,10 @@
   "list.filter.clear": "필터 지우기",
   "list.winners": "승자",
   "list.unknownGame": "알 수 없는 게임",
-  "list.calendar": "달력"
+  "list.calendar": "달력",
+  "calendar.title": "달력",
+  "calendar.prev": "이전 달",
+  "calendar.next": "다음 달",
+  "calendar.noDescription": "메모 없음",
+  "common.back": "뒤로"
 }

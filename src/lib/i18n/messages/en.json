@@ -29,5 +29,10 @@
   "list.filter.clear": "Clear filters",
   "list.winners": "Winners",
   "list.unknownGame": "Unknown game",
-  "list.calendar": "Calendar"
+  "list.calendar": "Calendar",
+  "calendar.title": "Calendar",
+  "calendar.prev": "Previous month",
+  "calendar.next": "Next month",
+  "calendar.noDescription": "No notes",
+  "common.back": "Back"
 }
