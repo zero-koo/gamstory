@@ -1,9 +1,25 @@
-/* base global resets — Tailwind directives added in Task 4 */
-:root {
-  color-scheme: light dark;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-primary: #18181b;
+  --color-primary-foreground: #fafafa;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+  --color-border: #e4e4e7;
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #0a0a0a;
+    --color-foreground: #fafafa;
+    --color-primary: #fafafa;
+    --color-primary-foreground: #18181b;
+    --color-muted: #27272a;
+    --color-muted-foreground: #a1a1aa;
+    --color-border: #27272a;
+  }
 }
+
+body { background: var(--color-background); color: var(--color-foreground); }
