@@ -1,0 +1,16 @@
+node_modules
+dist
+.output
+.vinxi
+.tanstack
+.cache
+coverage
+playwright-report
+test-results
+storybook-static
+.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+.vercel
