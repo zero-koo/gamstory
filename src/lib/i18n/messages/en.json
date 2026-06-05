@@ -1,4 +1,7 @@
 {
   "common.appName": "gamstory",
-  "common.boot.ok": "Foundation booted."
+  "common.boot.ok": "Foundation booted.",
+  "play.gamePicker.label": "Pick a game",
+  "play.gamePicker.placeholder": "Type a game name",
+  "play.gamePicker.create": "Add new game"
 }

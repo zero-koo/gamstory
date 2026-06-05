@@ -1,4 +1,7 @@
 {
   "common.appName": "gamstory",
-  "common.boot.ok": "기반이 부팅되었습니다."
+  "common.boot.ok": "기반이 부팅되었습니다.",
+  "play.gamePicker.label": "게임 선택",
+  "play.gamePicker.placeholder": "게임 이름 입력",
+  "play.gamePicker.create": "새 게임 추가"
 }
