@@ -14,7 +14,7 @@ export default defineConfig({
           environment: 'happy-dom',
           include: ['tests/unit/**/*.{test,spec}.{ts,tsx}', 'src/**/*.{test,spec}.{ts,tsx}'],
           exclude: ['tests/integration/**', 'tests/e2e/**'],
-          setupFiles: ['./tests/setup/unit.ts'],
+          setupFiles: ['./tests/setup/unit.ts', './tests/setup/local-db.ts'],
           env: {
             DATABASE_URL: 'postgres://placeholder:placeholder@localhost:5432/placeholder',
             BETTER_AUTH_SECRET: 'a'.repeat(64),
