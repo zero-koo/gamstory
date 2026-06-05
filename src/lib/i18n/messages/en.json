@@ -18,5 +18,16 @@
   "play.form.game": "Game",
   "play.form.members": "Members",
   "play.form.winners": "Winners",
-  "play.form.description": "Notes"
+  "play.form.description": "Notes",
+  "list.empty": "No plays recorded yet",
+  "list.newPlay": "New play",
+  "list.filter.search": "Search",
+  "list.filter.game": "Filter by game",
+  "list.filter.member": "Filter by member",
+  "list.filter.allGames": "All games",
+  "list.filter.allMembers": "All members",
+  "list.filter.clear": "Clear filters",
+  "list.winners": "Winners",
+  "list.unknownGame": "Unknown game",
+  "list.calendar": "Calendar"
 }

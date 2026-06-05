@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test('home renders the boot message', async ({ page }) => {
+test('home shows the new-play affordance', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByTestId('home-root')).toBeVisible();
-  await expect(page.getByTestId('home-boot-msg')).toBeVisible();
+  await expect(page.getByTestId('new-play-button')).toBeVisible();
 });
