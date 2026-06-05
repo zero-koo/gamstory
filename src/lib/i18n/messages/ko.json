@@ -1,6 +1,8 @@
 {
   "common.appName": "gamstory",
   "common.boot.ok": "기반이 부팅되었습니다.",
+  "common.save": "저장",
+  "common.cancel": "취소",
   "play.gamePicker.label": "게임 선택",
   "play.gamePicker.placeholder": "게임 이름 입력",
   "play.gamePicker.create": "새 게임 추가",
@@ -11,5 +13,10 @@
   "play.photo.add": "사진 추가 ({count}/{max})",
   "play.photo.remove": "사진 삭제",
   "play.photo.tooLarge": "사진이 5MB를 초과합니다",
-  "play.photo.capReached": "최대 5장까지 가능"
+  "play.photo.capReached": "최대 5장까지 가능",
+  "play.form.playedAt": "날짜",
+  "play.form.game": "게임",
+  "play.form.members": "참가자",
+  "play.form.winners": "승자 선택",
+  "play.form.description": "메모"
 }

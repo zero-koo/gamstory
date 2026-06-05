@@ -1,6 +1,8 @@
 {
   "common.appName": "gamstory",
   "common.boot.ok": "Foundation booted.",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
   "play.gamePicker.label": "Pick a game",
   "play.gamePicker.placeholder": "Type a game name",
   "play.gamePicker.create": "Add new game",
@@ -11,5 +13,10 @@
   "play.photo.add": "Add photo ({count}/{max})",
   "play.photo.remove": "Remove photo",
   "play.photo.tooLarge": "Photo exceeds 5MB",
-  "play.photo.capReached": "5-photo limit reached"
+  "play.photo.capReached": "5-photo limit reached",
+  "play.form.playedAt": "Date",
+  "play.form.game": "Game",
+  "play.form.members": "Members",
+  "play.form.winners": "Winners",
+  "play.form.description": "Notes"
 }
