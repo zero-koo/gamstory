@@ -1,0 +1,9 @@
+/* base global resets — Tailwind directives added in Task 4 */
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}

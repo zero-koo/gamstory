@@ -3,6 +3,9 @@ dist
 .output
 .vinxi
 .tanstack
+src/routeTree.gen.ts
+tsconfig.tsbuildinfo
+*.tsbuildinfo
 .cache
 coverage
 playwright-report
