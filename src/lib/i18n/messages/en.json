@@ -3,5 +3,9 @@
   "common.boot.ok": "Foundation booted.",
   "play.gamePicker.label": "Pick a game",
   "play.gamePicker.placeholder": "Type a game name",
-  "play.gamePicker.create": "Add new game"
+  "play.gamePicker.create": "Add new game",
+  "play.memberPicker.label": "Pick participants",
+  "play.memberPicker.placeholder": "Type a name",
+  "play.memberPicker.create": "Add new participant",
+  "play.memberPicker.remove": "Remove"
 }

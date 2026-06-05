@@ -3,5 +3,9 @@
   "common.boot.ok": "기반이 부팅되었습니다.",
   "play.gamePicker.label": "게임 선택",
   "play.gamePicker.placeholder": "게임 이름 입력",
-  "play.gamePicker.create": "새 게임 추가"
+  "play.gamePicker.create": "새 게임 추가",
+  "play.memberPicker.label": "참가자 선택",
+  "play.memberPicker.placeholder": "이름 입력",
+  "play.memberPicker.create": "새 참가자 추가",
+  "play.memberPicker.remove": "제거"
 }
