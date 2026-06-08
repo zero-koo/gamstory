@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
+import { Label } from '~/components/ui/label';
 import { Textarea } from '~/components/ui/textarea';
 import { Button } from '~/components/ui/button';
 import { GamePicker } from '~/features/games/game-picker';
@@ -113,7 +114,7 @@ export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
 
         {memberIds.length > 0 && (
           <FormItem>
-            <FormLabel>{t('play.form.winners')}</FormLabel>
+            <Label>{t('play.form.winners')}</Label>
             <ul className="space-y-1" data-testid="play-form-winner-list">
               {memberIds.map((id) => (
                 <li key={id} className="flex items-center gap-2">
