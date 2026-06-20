@@ -1,25 +1,109 @@
 @import "tailwindcss";
 
+/*
+ * gamstory design system — tokens ported from "gamstory Design System.dc.html".
+ * Warm, playful palette: 테라코타 / 머스터드 / 세이지 / 크림.
+ * Light + dark via prefers-color-scheme.
+ */
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-primary: #18181b;
-  --color-primary-foreground: #fafafa;
-  --color-muted: #f4f4f5;
-  --color-muted-foreground: #71717a;
-  --color-border: #e4e4e7;
+  /* Font — system stack first (webview/CSP safe, no CDN dependency). */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard,
+    "Malgun Gothic", system-ui, "Segoe UI", sans-serif;
+  /* Handwriting accent (Gaegu) requires self-hosting — CSP blocks Google Fonts. */
+  --font-handwriting: "Gaegu", cursive;
+
+  /* Surfaces & text */
+  --color-background: #fbf7f0;
+  --color-foreground: #2b2420;
+  --color-card: #ffffff;
+  --color-card-foreground: #2b2420;
+
+  /* Brand — terracotta */
+  --color-primary: #cb5a38;
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #a8401f;
+
+  /* Secondary surface */
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #2b2420;
+
+  /* Muted (cream) + accent (terracotta tint) */
+  --color-muted: #f4ece0;
+  --color-muted-foreground: #8a7f74;
+  --color-accent: #f7e7dd;
+  --color-accent-foreground: #8a4a30;
+
+  /* Lines & focus */
+  --color-border: #eae0d2;
+  --color-input: #d8cdbd;
+  --color-ring: #cb5a38;
+
+  /* Semantic */
+  --color-success: #5c9a66;
+  --color-success-foreground: #ffffff;
+  --color-warning: #d8982e;
+  --color-warning-foreground: #ffffff;
+  --color-danger: #bc4030;
+  --color-danger-foreground: #ffffff;
+  --color-destructive: #bc4030;
+  --color-destructive-foreground: #ffffff;
+
+  /* Playful accents — avatars, winner badges */
+  --color-sage: #6e8b62;
+  --color-mustard: #e0a53b;
+
+  /* Radius — sm 8 inputs · md 10 buttons · lg 16 cards · xl 18 sheets */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.125rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(43, 36, 32, 0.1);
+  --shadow-md: 0 6px 16px rgba(43, 36, 32, 0.12);
+  --shadow-lg: 0 12px 32px rgba(43, 36, 32, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   @theme {
-    --color-background: #0a0a0a;
-    --color-foreground: #fafafa;
-    --color-primary: #fafafa;
-    --color-primary-foreground: #18181b;
-    --color-muted: #27272a;
-    --color-muted-foreground: #a1a1aa;
-    --color-border: #27272a;
+    --color-background: #1e1916;
+    --color-foreground: #f2eae0;
+    --color-card: #2a2320;
+    --color-card-foreground: #f2eae0;
+
+    --color-primary: #e07a52;
+    --color-primary-foreground: #ffffff;
+    --color-primary-hover: #c8623c;
+
+    --color-secondary: #2a2320;
+    --color-secondary-foreground: #f2eae0;
+
+    --color-muted: #332b26;
+    --color-muted-foreground: #a89b8e;
+    --color-accent: #3a2a22;
+    --color-accent-foreground: #e9a488;
+
+    --color-border: #3a322c;
+    --color-input: #3a322c;
+    --color-ring: #e07a52;
+
+    --color-success: #6fb07a;
+    --color-success-foreground: #16241a;
+    --color-warning: #e6b24a;
+    --color-warning-foreground: #2a1f08;
+    --color-danger: #e06a56;
+    --color-danger-foreground: #ffffff;
+    --color-destructive: #e06a56;
+    --color-destructive-foreground: #ffffff;
+
+    --color-sage: #6fb07a;
+    --color-mustard: #e6b24a;
   }
 }
 
-body { background: var(--color-background); color: var(--color-foreground); }
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
