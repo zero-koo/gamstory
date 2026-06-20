@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { Trophy } from 'lucide-react';
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
@@ -9,6 +11,7 @@ import { Button } from '~/components/ui/button';
 import { GamePicker } from '~/features/games/game-picker';
 import { MemberPicker } from '~/features/members/member-picker';
 import { useI18n } from '~/lib/i18n/I18nProvider';
+import { listLocalMembers } from '~/local/members';
 import type { GameRef, LocalPlayParticipant } from '~/local/db/schema';
 
 const FormSchema = z.object({
@@ -40,6 +43,7 @@ function todayLocalIsoDate(): string {
 
 export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
   const { t } = useI18n();
+  const members = useLiveQuery(() => listLocalMembers(), []) ?? [];
   const form = useForm<PlayFormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -72,28 +76,19 @@ export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
     const next = winnerIds.includes(id) ? winnerIds.filter((x) => x !== id) : [...winnerIds, id];
     form.setValue('winnerIds', next, { shouldDirty: true });
   }
+  function memberName(id: string) {
+    return members.find((m) => m.id === id)?.name ?? id;
+  }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="playedAt"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('play.form.playedAt')}</FormLabel>
-              <Input type="date" {...field} data-testid="play-form-date" />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-5">
         <FormField
           control={form.control}
           name="gameRef"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('play.form.game')}</FormLabel>
+              <FormLabel className="text-[13px] font-bold">{t('play.form.game')}</FormLabel>
               <GamePicker value={field.value.id ? field.value : null} onChange={field.onChange} />
               <FormMessage />
             </FormItem>
@@ -105,8 +100,20 @@ export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
           name="memberIds"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('play.form.members')}</FormLabel>
+              <FormLabel className="text-[13px] font-bold">{t('play.form.members')}</FormLabel>
               <MemberPicker selectedIds={field.value} onChange={field.onChange} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="playedAt"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-[13px] font-bold">{t('play.form.playedAt')}</FormLabel>
+              <Input type="date" {...field} data-testid="play-form-date" />
               <FormMessage />
             </FormItem>
           )}
@@ -114,22 +121,47 @@ export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
 
         {memberIds.length > 0 && (
           <FormItem>
-            <Label>{t('play.form.winners')}</Label>
-            <ul className="space-y-1" data-testid="play-form-winner-list">
-              {memberIds.map((id) => (
-                <li key={id} className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    id={`winner-${id}`}
-                    checked={winnerIds.includes(id)}
-                    onChange={() => toggleWinner(id)}
-                    data-testid={`play-form-winner-${id}`}
-                  />
-                  <label htmlFor={`winner-${id}`} className="text-sm">
-                    {id}
-                  </label>
-                </li>
-              ))}
+            <Label className="text-[13px] font-bold">
+              {t('play.form.results')}{' '}
+              <span className="font-medium text-muted-foreground">· {t('play.form.resultsHint')}</span>
+            </Label>
+            <ul className="space-y-2" data-testid="play-form-winner-list">
+              {memberIds.map((id, idx) => {
+                const isWinner = winnerIds.includes(id);
+                return (
+                  <li
+                    key={id}
+                    className={
+                      'flex items-center gap-2.5 rounded-[12px] border p-2.5 ' +
+                      (isWinner ? 'border-mustard/60 bg-mustard/10' : 'border-border bg-card')
+                    }
+                  >
+                    <span
+                      className={
+                        'flex h-6 w-6 flex-none items-center justify-center rounded-full text-[13px] font-extrabold ' +
+                        (isWinner ? 'bg-mustard text-white' : 'bg-muted text-muted-foreground')
+                      }
+                    >
+                      {idx + 1}
+                    </span>
+                    <span className="flex-1 text-[15px] font-semibold">{memberName(id)}</span>
+                    <span className="relative h-7 w-7 flex-none">
+                      <input
+                        type="checkbox"
+                        aria-label={memberName(id)}
+                        checked={isWinner}
+                        onChange={() => toggleWinner(id)}
+                        data-testid={`play-form-winner-${id}`}
+                        className="peer h-7 w-7 cursor-pointer appearance-none rounded-full border-[1.5px] border-input transition-colors checked:border-0 checked:bg-mustard"
+                      />
+                      <Trophy
+                        className="pointer-events-none absolute inset-0 m-auto h-4 w-4 text-muted-foreground/70 peer-checked:text-white"
+                        strokeWidth={2}
+                      />
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </FormItem>
         )}
@@ -139,19 +171,19 @@ export function PlayForm({ initial, onSubmit, onCancel }: PlayFormProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('play.form.description')}</FormLabel>
+              <FormLabel className="text-[13px] font-bold">{t('play.form.description')}</FormLabel>
               <Textarea rows={3} {...field} data-testid="play-form-description" />
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="flex gap-2">
-          <Button type="submit" disabled={form.formState.isSubmitting} data-testid="play-form-submit">
+        <div className="flex gap-2 pt-1">
+          <Button type="submit" disabled={form.formState.isSubmitting} data-testid="play-form-submit" className="flex-1">
             {t('common.save')}
           </Button>
           {onCancel && (
-            <Button type="button" variant="outline" onClick={onCancel} data-testid="play-form-cancel">
+            <Button type="button" variant="secondary" onClick={onCancel} data-testid="play-form-cancel">
               {t('common.cancel')}
             </Button>
           )}

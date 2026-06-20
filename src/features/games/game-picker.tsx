@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import { listLocalGames, createLocalGame } from '~/local/games';
-import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { useI18n } from '~/lib/i18n/I18nProvider';
 import type { GameRef } from '~/local/db/schema';
@@ -38,36 +37,58 @@ export function GamePicker({ value, onChange, className }: GamePickerProps) {
     setQuery('');
   }
 
+  const showList = filtered.length > 0 || !!query.trim();
+
   return (
     <div className={className} role="combobox" aria-label={t('play.gamePicker.label')} aria-expanded>
-      <Input
-        value={selectedName ?? query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={t('play.gamePicker.placeholder')}
-        data-testid="game-picker-input"
-      />
-      <ul className="mt-1 max-h-48 overflow-auto rounded-md border border-border" role="listbox">
-        {filtered.map((g) => (
-          <li
-            key={g.id}
-            role="option"
-            aria-selected={value?.kind === 'local' && value.id === g.id}
-            className="cursor-pointer px-3 py-2 hover:bg-muted"
-            onClick={() => onChange({ kind: 'local', id: g.id })}
-            data-testid={`game-picker-option-${g.id}`}
-          >
-            {g.name}
-          </li>
-        ))}
-        {filtered.length === 0 && query.trim() && (
-          <li className="px-3 py-2">
-            <Button variant="ghost" onClick={handleCreate} className="w-full justify-start" data-testid="game-picker-create">
-              <Plus className="h-4 w-4 mr-2" />
-              {t('play.gamePicker.create')} &quot;{query.trim()}&quot;
-            </Button>
-          </li>
-        )}
-      </ul>
+      <div className="flex items-center gap-2.5 rounded-md border border-input bg-card px-3 py-2.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/30">
+        <Search className="h-4 w-4 flex-none text-muted-foreground" strokeWidth={2.2} />
+        <input
+          value={selectedName ?? query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t('play.gamePicker.placeholder')}
+          data-testid="game-picker-input"
+          className="min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground"
+        />
+      </div>
+      {showList && (
+        <ul
+          className="mt-1.5 max-h-48 overflow-auto rounded-[10px] border border-border bg-card"
+          role="listbox"
+        >
+          {filtered.map((g) => {
+            const selected = value?.kind === 'local' && value.id === g.id;
+            return (
+              <li
+                key={g.id}
+                role="option"
+                aria-selected={selected}
+                className={
+                  'cursor-pointer border-t border-border px-3.5 py-2.5 text-sm transition-colors first:border-t-0 ' +
+                  (selected ? 'bg-accent font-semibold text-accent-foreground' : 'hover:bg-muted')
+                }
+                onClick={() => onChange({ kind: 'local', id: g.id })}
+                data-testid={`game-picker-option-${g.id}`}
+              >
+                {g.name}
+              </li>
+            );
+          })}
+          {filtered.length === 0 && query.trim() && (
+            <li className="border-t border-border first:border-t-0">
+              <Button
+                variant="ghost"
+                onClick={handleCreate}
+                className="h-auto w-full justify-start px-3.5 py-2.5 text-sm"
+                data-testid="game-picker-create"
+              >
+                <Plus className="h-4 w-4" strokeWidth={2.4} />
+                {t('play.gamePicker.create')} &quot;{query.trim()}&quot;
+              </Button>
+            </li>
+          )}
+        </ul>
+      )}
     </div>
   );
 }
