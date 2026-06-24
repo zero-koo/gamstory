@@ -5,7 +5,7 @@ import { useI18n } from '~/lib/i18n/I18nProvider';
 import type { MergedPlay } from '~/lib/selectors/use-merged-plays';
 
 /** Deterministic warm placeholder colour for a play/game thumbnail. */
-const ACCENTS = ['#C9885C', '#8FA37E', '#B98A86', '#6E8B62', '#E0A53B', '#A98AB0'];
+const ACCENTS = ['#7B82BE', '#5FA59B', '#BC8AA0', '#6E8B62', '#D8A85A', '#8B7FC9'];
 export function accentColor(seed: string): string {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;

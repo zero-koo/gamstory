@@ -2,42 +2,41 @@
 
 /*
  * gamstory design system — tokens ported from "gamstory Design System.dc.html".
- * Warm, playful palette: 테라코타 / 머스터드 / 세이지 / 크림.
- * Light + dark via prefers-color-scheme.
+ * Cool, clean palette: 아이리스(iris/indigo) primary + zinc neutrals,
+ * with amber/green/red semantic accents. Light + dark via prefers-color-scheme.
+ * (Warm terracotta variant preserved as "gamstory Design System (Warm).dc.html".)
  */
 @theme {
   /* Font — system stack first (webview/CSP safe, no CDN dependency). */
   --font-sans:
     -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard,
     "Malgun Gothic", system-ui, "Segoe UI", sans-serif;
-  /* Handwriting accent (Gaegu) requires self-hosting — CSP blocks Google Fonts. */
-  --font-handwriting: "Gaegu", cursive;
 
   /* Surfaces & text */
-  --color-background: #fbf7f0;
-  --color-foreground: #2b2420;
+  --color-background: #f6f6f9;
+  --color-foreground: #18181b;
   --color-card: #ffffff;
-  --color-card-foreground: #2b2420;
+  --color-card-foreground: #18181b;
 
-  /* Brand — terracotta */
-  --color-primary: #cb5a38;
+  /* Brand — iris */
+  --color-primary: #5b5bd6;
   --color-primary-foreground: #ffffff;
-  --color-primary-hover: #a8401f;
+  --color-primary-hover: #4f4fc4;
 
   /* Secondary surface */
   --color-secondary: #ffffff;
-  --color-secondary-foreground: #2b2420;
+  --color-secondary-foreground: #18181b;
 
-  /* Muted (cream) + accent (terracotta tint) */
-  --color-muted: #f4ece0;
-  --color-muted-foreground: #8a7f74;
-  --color-accent: #f7e7dd;
-  --color-accent-foreground: #8a4a30;
+  /* Muted (neutral) + accent (iris tint) */
+  --color-muted: #f1f1f5;
+  --color-muted-foreground: #6e6e78;
+  --color-accent: #ececfb;
+  --color-accent-foreground: #3a3aae;
 
   /* Lines & focus */
-  --color-border: #eae0d2;
-  --color-input: #d8cdbd;
-  --color-ring: #cb5a38;
+  --color-border: #e5e5ea;
+  --color-input: #d3d3db;
+  --color-ring: #5b5bd6;
 
   /* Semantic */
   --color-success: #5c9a66;
@@ -60,33 +59,40 @@
   --radius-xl: 1.125rem;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(43, 36, 32, 0.1);
-  --shadow-md: 0 6px 16px rgba(43, 36, 32, 0.12);
-  --shadow-lg: 0 12px 32px rgba(43, 36, 32, 0.2);
+  --shadow-sm: 0 1px 3px rgba(24, 24, 27, 0.1);
+  --shadow-md: 0 6px 16px rgba(24, 24, 27, 0.12);
+  --shadow-lg: 0 12px 32px rgba(24, 24, 27, 0.2);
 }
 
+/*
+ * Dark overrides must live in a plain :root rule inside @media — Tailwind v4
+ * does NOT support @theme nested in at-rules (a second @theme would merge into
+ * :root and clobber the light values). The @theme block above already emits
+ * these variables to :root and wires the utilities to var(); here we only swap
+ * the values under the dark media query.
+ */
 @media (prefers-color-scheme: dark) {
-  @theme {
-    --color-background: #1e1916;
-    --color-foreground: #f2eae0;
-    --color-card: #2a2320;
-    --color-card-foreground: #f2eae0;
+  :root {
+    --color-background: #161619;
+    --color-foreground: #efeff3;
+    --color-card: #232327;
+    --color-card-foreground: #efeff3;
 
-    --color-primary: #e07a52;
+    --color-primary: #8b8bf0;
     --color-primary-foreground: #ffffff;
-    --color-primary-hover: #c8623c;
+    --color-primary-hover: #7676e0;
 
-    --color-secondary: #2a2320;
-    --color-secondary-foreground: #f2eae0;
+    --color-secondary: #232327;
+    --color-secondary-foreground: #efeff3;
 
-    --color-muted: #332b26;
-    --color-muted-foreground: #a89b8e;
-    --color-accent: #3a2a22;
-    --color-accent-foreground: #e9a488;
+    --color-muted: #26262b;
+    --color-muted-foreground: #a1a1ac;
+    --color-accent: #2e2e45;
+    --color-accent-foreground: #b8b8f5;
 
-    --color-border: #3a322c;
-    --color-input: #3a322c;
-    --color-ring: #e07a52;
+    --color-border: #2e2e34;
+    --color-input: #2e2e34;
+    --color-ring: #8b8bf0;
 
     --color-success: #6fb07a;
     --color-success-foreground: #16241a;
